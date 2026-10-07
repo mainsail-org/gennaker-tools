@@ -3,24 +3,18 @@ on:
   workflow_call:
     inputs:
       version_spec:
-        description: 'New Version Specifier'
-        default: 'next'
+        type: string
         required: false
       branch:
-        description: 'The branch to target'
+        type: string
         required: false
       post_version_spec:
-        description: 'Post Version Specifier'
+        type: string
         required: false
-      # silent:
-      #   description: "Set a placeholder in the changelog and don't publish the release."
-      #   required: false
-      #   type: boolean
       since:
-        description: 'Use PRs with activity since this date or git reference'
         required: false
+        type: string
       since_last_stable:
-        description: 'Use PRs with activity since the last stable git tag'
         required: false
         type: boolean
   workflow_dispatch:
@@ -35,10 +29,6 @@ on:
       post_version_spec:
         description: 'Post Version Specifier'
         required: false
-      # silent:
-      #   description: "Set a placeholder in the changelog and don't publish the release."
-      #   required: false
-      #   type: boolean
       since:
         description: 'Use PRs with activity since this date or git reference'
         required: false

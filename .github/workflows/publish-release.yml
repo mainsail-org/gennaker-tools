@@ -3,14 +3,14 @@ on:
   workflow_call:
     inputs:
       branch:
-        description: 'The target branch'
         required: false
+        type: string
       release_url:
-        description: 'The URL of the draft GitHub release'
         required: false
+        type: string
       steps_to_skip:
-        description: 'Comma separated list of steps to skip'
         required: false
+        type: string
   workflow_dispatch:
     inputs:
       branch:

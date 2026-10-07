@@ -2,6 +2,28 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.11.1
+
+([Full Changelog](https://github.com/mainsail-org/gennaker-tools/compare/v0.11.0...a4132adaa006600133098a593728646c7b95446d))
+
+### Merged PRs
+
+- Update package.json [#63](https://github.com/mainsail-org/gennaker-tools/pull/63) ([@pascargr](https://github.com/pascargr))
+- Try and set string type in CI [#62](https://github.com/mainsail-org/gennaker-tools/pull/62) ([@agoose77](https://github.com/agoose77))
+- Attempt 2: fix release workflows. [#61](https://github.com/mainsail-org/gennaker-tools/pull/61) ([@agoose77](https://github.com/agoose77))
+- Add workflow to single-click release [#60](https://github.com/mainsail-org/gennaker-tools/pull/60) ([@agoose77](https://github.com/agoose77))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/mainsail-org/gennaker-tools/graphs/contributors?from=2026-09-15&to=2026-10-07&type=c))
+
+@agoose77 ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Aagoose77+updated%3A2026-09-15..2026-10-07&type=Issues)) | @pascargr ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Apascargr+updated%3A2026-09-15..2026-10-07&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.11.0
 
 ([Full Changelog](https://github.com/agoose77/gennaker-tools/compare/v0.10.0...1be37f15dd3bd566ee26a16f154003f505f2665a))
@@ -18,8 +40,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/agoose77/gennaker-tools/graphs/contributors?from=2026-09-02&to=2026-09-15&type=c))
 
 @pascargr ([activity](https://github.com/search?q=repo%3Aagoose77%2Fgennaker-tools+involves%3Apascargr+updated%3A2026-09-02..2026-09-15&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.10.0
 

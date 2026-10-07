@@ -7,9 +7,9 @@
         "jupyterlab",
         "jupyterlab-extension"
     ],
-    "homepage": "https://github.com/agoose77/gennaker-tools",
+    "homepage": "https://github.com/mainsail-org/gennaker-tools",
     "bugs": {
-        "url": "https://github.com/agoose77/gennaker-tools/issues"
+        "url": "https://github.com/mainsail-org/gennaker-tools/issues"
     },
     "license": "BSD-3-Clause",
     "author": {
@@ -27,7 +27,7 @@
     "style": "style/index.css",
     "repository": {
         "type": "git",
-        "url": "https://github.com/agoose77/gennaker-tools.git"
+        "url": "https://github.com/mainsail-org/gennaker-tools.git"
     },
     "scripts": {
         "build": "pnpm run build:lib && pnpm run build:labextension:dev",

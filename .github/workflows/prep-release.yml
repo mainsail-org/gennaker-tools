@@ -16,7 +16,7 @@ on:
         type: string
       since_last_stable:
         required: false
-        type: boolean
+        type: string
   workflow_dispatch:
     inputs:
       version_spec:

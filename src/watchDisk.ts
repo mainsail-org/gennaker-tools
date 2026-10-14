@@ -78,7 +78,6 @@ export const watchDiskPlugin: JupyterFrontEndPlugin<void> = {
         for (const widget of labShell.widgets('main')) {
           const context = docManager.contextForWidget(widget);
           if (context === undefined) {
-            console.debug(`No context for widget: ${widget.title}`);
             continue;
           }
 
@@ -107,7 +106,6 @@ export const watchDiskPlugin: JupyterFrontEndPlugin<void> = {
           // then do not do anything
           // (there are no untracked changes on disk)
           if (timeDiff <= diffTolerance) {
-            console.debug('No changes detected on disk');
             continue;
           }
 
@@ -117,7 +115,7 @@ export const watchDiskPlugin: JupyterFrontEndPlugin<void> = {
           if (knownTime === diskModel.last_modified) {
             continue;
           }
-
+          console.debug('A change was detected on disk.');
           // set the timestamp for the file as current time
           knownTimestamps.set(context.path, diskModel.last_modified);
 
@@ -144,10 +142,8 @@ export const watchDiskPlugin: JupyterFrontEndPlugin<void> = {
         }
       } catch (e) {
         console.error(e);
-      } finally {
-        setTimeout(loop, reloadInterval);
       }
     };
-    loop();
+    setInterval(loop, reloadInterval);
   }
 };

@@ -2,6 +2,25 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.11.4
+
+([Full Changelog](https://github.com/mainsail-org/gennaker-tools/compare/v0.11.3...16088b49afb40cf12c10c14b17740934a5c5f069))
+
+### Maintenance and upkeep improvements
+
+- Add badge for PyPI release [#64](https://github.com/mainsail-org/gennaker-tools/pull/64) ([@agoose77](https://github.com/agoose77))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/mainsail-org/gennaker-tools/graphs/contributors?from=2026-10-07&to=2026-10-14&type=c))
+
+@agoose77 ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Aagoose77+updated%3A2026-10-07..2026-10-14&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.11.3
 
 ([Full Changelog](https://github.com/mainsail-org/gennaker-tools/compare/v0.11.0...a4132adaa006600133098a593728646c7b95446d))
@@ -21,8 +40,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/mainsail-org/gennaker-tools/graphs/contributors?from=2026-09-15&to=2026-10-07&type=c))
 
 @agoose77 ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Aagoose77+updated%3A2026-09-15..2026-10-07&type=Issues)) | @pascargr ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Apascargr+updated%3A2026-09-15..2026-10-07&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.11.2
 

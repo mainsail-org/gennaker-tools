@@ -2,6 +2,25 @@
 
 <!-- <START NEW CHANGELOG ENTRY> -->
 
+## 0.11.5
+
+([Full Changelog](https://github.com/mainsail-org/gennaker-tools/compare/v0.11.4...9b8d84ab9d2a747f6b8ee3d72a417b8b25056dbc))
+
+### Enhancements made
+
+- fix console outputs of watchDisk [#65](https://github.com/mainsail-org/gennaker-tools/pull/65) ([@pascargr](https://github.com/pascargr))
+
+### Contributors to this release
+
+The following people contributed discussions, new ideas, code and documentation contributions, and review.
+See [our definition of contributors](https://github-activity.readthedocs.io/en/latest/use/#how-does-this-tool-define-contributions-in-the-reports).
+
+([GitHub contributors page for this release](https://github.com/mainsail-org/gennaker-tools/graphs/contributors?from=2026-10-14&to=2026-10-15&type=c))
+
+@pascargr ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Apascargr+updated%3A2026-10-14..2026-10-15&type=Issues))
+
+<!-- <END NEW CHANGELOG ENTRY> -->
+
 ## 0.11.4
 
 ([Full Changelog](https://github.com/mainsail-org/gennaker-tools/compare/v0.11.3...16088b49afb40cf12c10c14b17740934a5c5f069))
@@ -18,8 +37,6 @@ See [our definition of contributors](https://github-activity.readthedocs.io/en/l
 ([GitHub contributors page for this release](https://github.com/mainsail-org/gennaker-tools/graphs/contributors?from=2026-10-07&to=2026-10-14&type=c))
 
 @agoose77 ([activity](https://github.com/search?q=repo%3Amainsail-org%2Fgennaker-tools+involves%3Aagoose77+updated%3A2026-10-07..2026-10-14&type=Issues))
-
-<!-- <END NEW CHANGELOG ENTRY> -->
 
 ## 0.11.3
 

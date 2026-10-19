@@ -18,29 +18,42 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      # node_version must satisfy the engines field in package.json, which
+      # .npmrc enforces via engine-strict. base-setup defaults to Node 24,
+      # which npm ci would reject.
       - name: Base Setup
         uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
+        with:
+          node_version: '26'
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
+      # pip >= 26 is required for PIP_UPLOADED_PRIOR_TO, the Python-side
+      # equivalent of the npm min-release-age cooldown in .npmrc. Upgraded in
+      # its own step, with the variable unset, so an older pip cannot choke on
+      # an option it does not recognise while bootstrapping itself.
+      - name: Upgrade pip
+        run: python -m pip install -U "pip>=26"
 
       - name: Install dependencies
         run: python -m pip install -U "jupyterlab>=4.0.0,<5"
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Lint the extension
         run: |
           set -eux
-          pnpm ci
-          pnpm run lint:check
+          npm ci
+          npm run lint:check
 
       - name: Build the extension
         run: |
           set -eux
-          python -m pip install .[test]
+          python -m pip install .[dev]
 
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "gennaker-tools.*OK"
           python -m jupyterlab.browser_check
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Package the extension
         run: |
@@ -49,6 +62,8 @@ jobs:
           pip install build
           python -m build
           pip uninstall -y "gennaker-tools" jupyterlab
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Upload extension packages
         uses: actions/upload-artifact@v7
@@ -70,6 +85,9 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: extension-artifacts
+      - name: Upgrade pip
+        run: python -m pip install -U "pip>=26"
+
       - name: Install and Test
         run: |
           set -eux
@@ -83,6 +101,8 @@ jobs:
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "gennaker-tools.*OK"
           python -m jupyterlab.browser_check --no-browser-test
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
   check_links:
     name: Check Links

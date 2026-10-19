@@ -18,16 +18,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v6
 
+      # node_version must satisfy the engines field in package.json, which
+      # .npmrc enforces via engine-strict. base-setup defaults to Node 24,
+      # which npm ci would reject.
       - name: Base Setup
         uses: jupyterlab/maintainer-tools/.github/actions/base-setup@v1
-
-      # Pinned because .npmrc sets `min-release-age`, which is silently ignored
-      # by npm < 11.10.0.
-      - name: Setup Node
-        uses: actions/setup-node@v6
         with:
-          node-version: '26'
-          cache: 'npm'
+          node_version: '26'
 
       # pip >= 26 is required for PIP_UPLOADED_PRIOR_TO, the Python-side
       # equivalent of the npm min-release-age cooldown in .npmrc. Upgraded in
@@ -99,13 +96,13 @@ jobs:
           sudo rm -rf $(which node)
 
           pip install "jupyterlab>=4.0.0,<5" gennaker_tools*.whl
-        env:
-          PIP_UPLOADED_PRIOR_TO: P18D
 
 
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "gennaker-tools.*OK"
           python -m jupyterlab.browser_check --no-browser-test
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
   check_links:
     name: Check Links

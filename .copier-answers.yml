@@ -4,11 +4,10 @@ _src_path: https://github.com/jupyterlab/extension-template
 author_email: angus@oieltd.com
 author_name: Angus
 has_binder: false
-has_settings: false
-kind: frontend
-labextension_name: myextension
-project_short_description: A JupyterLab extension.
-python_name: myextension
-repository: ''
+has_settings: true
+kind: frontend-and-server
+labextension_name: gennaker-tools
+project_short_description: A JupyterLab extension to provide a restart-and-run-to-selected command variant that clears non-executed cell outputs.
+python_name: gennaker_tools
+repository: https://github.com/mainsail-org/gennaker-tools
 test: false
-

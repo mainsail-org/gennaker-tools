@@ -55,6 +55,11 @@ jobs:
         env:
           PIP_UPLOADED_PRIOR_TO: P18D
 
+      # Fails if any server endpoint is missing an authentication decorator.
+      # Runs after the install step above, as it imports the extension.
+      - name: Check endpoint authentication
+        run: python .github/scripts/check_auth.py
+
       - name: Package the extension
         run: |
           set -eux

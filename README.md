@@ -72,23 +72,41 @@ pip uninstall gennaker-tools
 
 ### Development install
 
-Note: You will need NodeJS to build the extension package.
+Prerequisites:
 
-This project uses `npm`, the package manager bundled with NodeJS. Note that
-`.npmrc` sets `min-release-age`, which requires npm 11.10.0 or newer to take
-effect; the Nix dev shell provides a suitable version.
+- **NodeJS 26 or newer**, which is needed to build the extension package. The
+  version is pinned in `.nvmrc` and enforced by the `engines` field in
+  `package.json`, so `npm ci` will refuse to run on an older release. This
+  project uses `npm`, the package manager bundled with NodeJS.
+- **Python 3.10 or newer**, with **pip 26 or newer** (see the dependency
+  cooldown note below).
 
 ```bash
 # Clone the repo to your local environment
 # Change directory to the gennaker_tools directory
-# Install package in development mode
-pip install -e "."
+# Install package in development mode, with the development dependencies
+pip install -e ".[dev]"
 # Link your development version of the extension with JupyterLab
 jupyter-builder develop . --overwrite
 # Install the JavaScript dependencies
 npm ci
 # Rebuild extension Typescript source after making changes
 npm run build
+```
+
+#### Dependency cooldown
+
+As a supply-chain precaution, this project only installs dependency versions
+that have been published for at least 18 days, on the basis that compromised
+releases are usually detected and pulled well within that window.
+
+For JavaScript this is enforced by `min-release-age` in the committed `.npmrc`,
+so it applies automatically. For Python there is no project-level pip config,
+so it has to be set per machine or per CI job. The CI workflows set
+`PIP_UPLOADED_PRIOR_TO`; to apply the same policy to your own environment:
+
+```bash
+pip config set global.uploaded-prior-to P18D
 ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.

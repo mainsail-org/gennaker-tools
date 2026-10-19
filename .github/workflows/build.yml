@@ -29,8 +29,17 @@ jobs:
           node-version: '26'
           cache: 'npm'
 
+      # pip >= 26 is required for PIP_UPLOADED_PRIOR_TO, the Python-side
+      # equivalent of the npm min-release-age cooldown in .npmrc. Upgraded in
+      # its own step, with the variable unset, so an older pip cannot choke on
+      # an option it does not recognise while bootstrapping itself.
+      - name: Upgrade pip
+        run: python -m pip install -U "pip>=26"
+
       - name: Install dependencies
         run: python -m pip install -U "jupyterlab>=4.0.0,<5"
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Lint the extension
         run: |
@@ -41,11 +50,13 @@ jobs:
       - name: Build the extension
         run: |
           set -eux
-          python -m pip install .[test]
+          python -m pip install .[dev]
 
           jupyter labextension list
           jupyter labextension list 2>&1 | grep -ie "gennaker-tools.*OK"
           python -m jupyterlab.browser_check
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Package the extension
         run: |
@@ -54,6 +65,8 @@ jobs:
           pip install build
           python -m build
           pip uninstall -y "gennaker-tools" jupyterlab
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
       - name: Upload extension packages
         uses: actions/upload-artifact@v7
@@ -75,6 +88,9 @@ jobs:
       - uses: actions/download-artifact@v8
         with:
           name: extension-artifacts
+      - name: Upgrade pip
+        run: python -m pip install -U "pip>=26"
+
       - name: Install and Test
         run: |
           set -eux
@@ -83,6 +99,8 @@ jobs:
           sudo rm -rf $(which node)
 
           pip install "jupyterlab>=4.0.0,<5" gennaker_tools*.whl
+        env:
+          PIP_UPLOADED_PRIOR_TO: P18D
 
 
           jupyter labextension list

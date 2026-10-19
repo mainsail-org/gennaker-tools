@@ -29,7 +29,9 @@
       venvHook =
         dev-python.packages.${system}.nix-ld-venv-hook.override
         {python = python;};
-      node = pkgs.nodejs_24;
+      # Node 26 bundles npm >= 11.10, required for the `min-release-age`
+      # setting in .npmrc to be honoured rather than silently ignored.
+      node = pkgs.nodejs_26;
       packages =
         [
           python
@@ -41,7 +43,6 @@
           ninja
           gcc
           pre-commit
-          pnpm
         ]);
       # Unset these unwanted env vars
       # PYTHONPATH bleeds from Nix Python packages

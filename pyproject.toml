@@ -70,11 +70,11 @@ skip-if-exists = ["gennaker_tools/labextension/static/style.js"]
 
 [tool.hatch.build.hooks.jupyter-builder.build-kwargs]
 build_cmd = "build:prod"
-npm = ["pnpm"]
+npm = ["npm"]
 
 [tool.hatch.build.hooks.jupyter-builder.editable-build-kwargs]
 build_cmd = "install:extension"
-npm = ["pnpm"]
+npm = ["npm"]
 source_dir = "src"
 build_dir = "gennaker_tools/labextension"
 
@@ -84,10 +84,10 @@ version_cmd = "hatch version"
 [tool.jupyter-releaser.hooks]
 before-build-npm = [
     "python -m pip install 'jupyter-builder>=1.0.0,<2'",
-    "pnpm ci",
-    "pnpm run build:prod"
+    "npm ci",
+    "npm run build:prod"
 ]
-before-build-python = ["pnpm run clean:all"]
+before-build-python = ["npm run clean:all"]
 
 [tool.check-wheel-contents]
 ignore = ["W002"]

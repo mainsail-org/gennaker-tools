@@ -74,9 +74,9 @@ pip uninstall gennaker-tools
 
 Note: You will need NodeJS to build the extension package.
 
-The `pnpm` command is JupyterLab's pinned version of
-[yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
-`yarn` or `npm` in lieu of `pnpm` below.
+This project uses `npm`, the package manager bundled with NodeJS. Note that
+`.npmrc` sets `min-release-age`, which requires npm 11.10.0 or newer to take
+effect; the Nix dev shell provides a suitable version.
 
 ```bash
 # Clone the repo to your local environment
@@ -85,22 +85,24 @@ The `pnpm` command is JupyterLab's pinned version of
 pip install -e "."
 # Link your development version of the extension with JupyterLab
 jupyter-builder develop . --overwrite
+# Install the JavaScript dependencies
+npm ci
 # Rebuild extension Typescript source after making changes
-pnpm run build
+npm run build
 ```
 
 You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
 
 ```bash
 # Watch the source directory in one terminal, automatically rebuilding when needed
-pnpm run watch
+npm run watch
 # Run JupyterLab in another terminal
 jupyter lab
 ```
 
 With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
 
-By default, the `pnpm run build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
+By default, the `npm run build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
 
 ```bash
 jupyter lab build --minimize=False

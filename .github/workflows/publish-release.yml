@@ -38,10 +38,10 @@ jobs:
           app-id: ${{ vars.APP_ID }}
           private-key: ${{ secrets.APP_PRIVATE_KEY }}
 
-      - name: Install pnpm
-        uses: pnpm/action-setup@v6
+      - name: Setup Node
+        uses: actions/setup-node@v6
         with:
-          version: 11.17.0
+          node-version: '26'
 
       - name: Populate Release
         id: populate-release

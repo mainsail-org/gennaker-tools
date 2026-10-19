@@ -30,26 +30,26 @@
         "url": "https://github.com/mainsail-org/gennaker-tools.git"
     },
     "scripts": {
-        "build": "pnpm run build:lib && pnpm run build:labextension:dev",
-        "build:prod": "pnpm run clean && pnpm run build:lib:prod && pnpm run build:labextension",
+        "build": "npm run build:lib && npm run build:labextension:dev",
+        "build:prod": "npm run clean && npm run build:lib:prod && npm run build:labextension",
         "build:labextension": "jupyter-builder build .",
         "build:labextension:dev": "jupyter-builder build --development True .",
         "build:lib": "tsc --sourceMap",
         "build:lib:prod": "tsc",
-        "clean": "pnpm run clean:lib",
+        "clean": "npm run clean:lib",
         "clean:lib": "rimraf lib tsconfig.tsbuildinfo",
         "clean:lintcache": "rimraf .eslintcache .stylelintcache",
         "clean:labextension": "rimraf gennaker_tools/labextension gennaker_tools/_version.py",
-        "clean:all": "pnpm run clean:lib && pnpm run clean:labextension && pnpm run clean:lintcache",
-        "eslint": "pnpm run eslint:check --fix",
+        "clean:all": "npm run clean:lib && npm run clean:labextension && npm run clean:lintcache",
+        "eslint": "npm run eslint:check -- --fix",
         "eslint:check": "eslint . --cache --ext .ts,.tsx",
-        "install:extension": "pnpm run build",
-        "lint": "pnpm run stylelint && pnpm run prettier && pnpm run eslint",
-        "lint:check": "pnpm run stylelint:check && pnpm run prettier:check && pnpm run eslint:check",
-        "prettier": "pnpm run prettier:base --write --list-different",
+        "install:extension": "npm run build",
+        "lint": "npm run stylelint && npm run prettier && npm run eslint",
+        "lint:check": "npm run stylelint:check && npm run prettier:check && npm run eslint:check",
+        "prettier": "npm run prettier:base -- --write --list-different",
         "prettier:base": "prettier \"**/*{.ts,.tsx,.js,.jsx,.css,.json,.md}\"",
-        "prettier:check": "pnpm run prettier:base --check",
-        "stylelint": "pnpm run stylelint:check --fix",
+        "prettier:check": "npm run prettier:base -- --check",
+        "stylelint": "npm run stylelint:check -- --fix",
         "stylelint:check": "stylelint --cache \"style/**/*.css\"",
         "watch": "run-p watch:src watch:labextension",
         "watch:src": "tsc -w --sourceMap",
@@ -145,5 +145,5 @@
             "value-no-vendor-prefix": null
         }
     },
-    "packageManager": "pnpm@11.17.0"
+    "packageManager": "npm@11.16.0"
 }

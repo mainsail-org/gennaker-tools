@@ -29,7 +29,7 @@
       venvHook =
         dev-python.packages.${system}.nix-ld-venv-hook.override
         {python = python;};
-      node = pkgs.nodejs_24;
+      node = pkgs.nodejs_26;
       packages =
         [
           python
@@ -53,6 +53,10 @@
         inherit packages;
 
         venvDir = ".venv";
+
+        env = {
+          PIP_UPLOADED_PRIOR_TO = "P18D";
+        };
 
         # Drop bad env vars on activation
         postShellHook = unwantedEnvPreamble;

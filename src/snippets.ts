@@ -6,6 +6,7 @@ import {
   IEditorExtensionRegistry,
   EditorExtensionRegistry
 } from '@jupyterlab/codemirror';
+import { ISettingRegistry } from '@jupyterlab/settingregistry';
 import {
   snippetCompletion,
   autocompletion,
@@ -81,9 +82,49 @@ export const snippetsPlugin: JupyterFrontEndPlugin<void> = {
   id: SNIPPETS_PLUGIN_ID,
   description: 'A JupyterLab extension.',
   autoStart: true,
-  requires: [IEditorExtensionRegistry],
+  requires: [IEditorExtensionRegistry, ISettingRegistry],
   optional: [],
-  activate: (app: JupyterFrontEnd, registry: IEditorExtensionRegistry) => {
+  activate: (app: JupyterFrontEnd, registry: IEditorExtensionRegistry, settings: ISettingRegistry,) => {
+
+
+  // Setting for writable folder
+  // This should be a path like /foo/nar, or empty string "" meaning not-set
+
+
+  /**
+    * Implement the handler for settings changes
+    *
+    * @param setting Extension settings
+    */
+  const loadSetting = async (setting: ISettingRegistry.ISettings) => {
+    // Read the settings and convert to the correct type
+    const snippets = setting.get('snippets').composite as any as SnippetConfigurationItem[];
+    console.log("snippets loaded!", snippets)
+    const {composite} = await settings.get("@jupyterlab/notebook-extension:tracker", "codeCellConfig");
+
+    if (composite != undefined) {
+      ((composite as any)["gennaker-tools:snippets"] as any)["snippets"] = snippets as any;
+      await settings.set("@jupyterlab/notebook-extension:tracker", "codeCellConfig", composite);
+    }
+  };
+
+  // Wait for the application to be restored and
+  // for the settings for this plugin to be loaded
+  Promise.all([app.restored, settings.load(SNIPPETS_PLUGIN_ID)])
+    .then(([, setting]) => {
+      // Read the settings
+      loadSetting(setting);
+
+      // Listen for your plugin setting changes using Signal
+      setting.changed.connect(loadSetting);
+    })
+    .catch(reason => {
+      console.error(
+        `Something went wrong when reading the settings.\n${reason}`
+      );
+    });
+
+
     console.log('JupyterLab plugin gennaker-tools:snippets is activated!');
     registry.addExtension(
       Object.freeze({
@@ -92,7 +133,6 @@ export const snippetsPlugin: JupyterFrontEndPlugin<void> = {
           EditorExtensionRegistry.createConfigurableExtension(
             (config: SnippetConfiguration) => {
               config = validateSnippetConfig(config);
-
               return autocompletion({
                 override: [
                   completeFromList(

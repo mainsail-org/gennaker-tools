@@ -1,6 +1,6 @@
 {
-  "title": "Gennaker Settings",
-  "description": "Gennaker tools settings.",
+  "title": "Save As",
+  "description": "Where to save copies of files with read only permissions.",
   "jupyter.lab.shortcuts": [],
   "jupyter.lab.menus": {
     "main": [

@@ -1,0 +1,44 @@
+{
+  "title": "Snippets",
+  "description": "Define snippets to be used in all files.",
+  "properties": {
+    "snippets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "enum": [
+              "class",
+              "constant",
+              "enum",
+              "function",
+              "interface",
+              "keyword",
+              "method",
+              "namespace",
+              "property",
+              "text",
+              "type",
+              "variable"
+            ]
+          },
+          "body": {
+            "type": "string"
+          },
+          "label": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "type",
+          "body",
+          "label"
+        ]
+      }
+    }
+  },
+  "additionalProperties": false,
+  "type": "object"
+}
